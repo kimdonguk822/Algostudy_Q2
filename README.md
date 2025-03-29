@@ -27,6 +27,22 @@
 
 ---
 
+### 🔹 Convention Rule
+
+#### ✅ Commit Message
+```
+[Wn] 자유기술  
+ex) [W2] 0000 문제 풀이  
+```
+
+#### ✅ Pull Request
+```
+Wn / 이름  
+ex) W3 / 홍길동  
+```
+
+---
+
 ## 🗂️ Directory Structure
 
 ```bash
@@ -60,7 +76,9 @@ git remote add upstream https://github.com/kimdonguk822/Algostudy_Q2.git
 ### 3. ✅ 주차별 브랜치 생성 및 작업
 ```
 git checkout -b username/week1
-# 폴더 생성 및 코드 작성
+
+# 폴더 생성 및 코드 작성 후후
+
 git add .
 git commit -m "[W1] 홍길동"
 git push origin username/week1
@@ -85,7 +103,6 @@ git pull upstream main
 
 # 내 GitHub에도 반영
 git push origin main
-
 ```
 
 ### ✅ Pull Request 작성 예시 템플릿
