@@ -49,11 +49,11 @@ ex) W3 / 홍길동
 📦 Algostudy_Q2
  ┣ 📂 week1
  ┃ ┣ 📂 honggildong
- ┃ ┃ ┣ 📄 BOJ_1234.java
- ┃ ┃ ┗ 📄 BOJ_5678.java
+ ┃ ┃ ┣ 📄 B1234.java
+ ┃ ┃ ┗ 📄 B5678.java
  ┣ 📂 week2
  ┃ ┣ 📂 honggildong
- ┃ ┃ ┗ 📄 BOJ_1357.py
+ ┃ ┃ ┗ 📄 B1357.py
  ┣ 📄 overview.md
  ┗ 📄 README.md
  ```
@@ -64,7 +64,7 @@ ex) W3 / 홍길동
 ```
 # 내 GitHub 계정으로 포크
 # 이후 로컬에 복제
-git clone https://github.com/본인계정/Algostudy_Q2.git
+git clone https://github.com/kimdonguk822/Algostudy_Q2.git
 cd Algostudy_Q2
 ```
 
@@ -81,7 +81,8 @@ git checkout -b username/week1
 
 git add .
 git commit -m "[W1] 홍길동"
-git push origin username/week1
+git push origin username
+Ex) git push origin donguk
 ```
 
 ### 4. ✅ Pull Request 생성
@@ -101,8 +102,8 @@ git checkout main
 # 원본 저장소에서 변경 내용 가져오기
 git pull upstream main
 
-# 내 GitHub에도 반영
-git push origin main
+# 다시 개인 branch로 이동 후 작업 진행
+git checkout username
 ```
 
 ### ✅ Pull Request 작성 예시 템플릿
