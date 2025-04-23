@@ -2,7 +2,7 @@
 
 ### 1️⃣ [16236번 - 아기 상어 (Gold III)](https://www.acmicpc.net/problem/16236)
 
-### 2️⃣ [14567번 - 태권왕 (Silver I)](https://www.acmicpc.net/problem/14567)
+### 2️⃣ [14562번 - 태권왕 (Silver I)](https://www.acmicpc.net/problem/14562)
 
 ### 3️⃣ [14501번 - 퇴사 (Silver III)](https://www.acmicpc.net/problem/14501)
 
