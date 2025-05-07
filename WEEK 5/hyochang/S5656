@@ -1,0 +1,133 @@
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.util.StringTokenizer;
+
+/*
+ * 벽돌깨기
+ * 96080kb 625ms
+ * https://swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId=AWXRQm6qfL0DFAUo
+ */
+public class Solution {
+	static int n, w, h;
+	static int ans;
+	static int[][] breeks;
+	static int[] sel;
+
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+		StringBuilder sb = new StringBuilder();
+		int t = Integer.parseInt(br.readLine());
+
+		for (int tc = 1; tc <= t; tc++) {
+			StringTokenizer st = new StringTokenizer(br.readLine());
+
+			n = Integer.parseInt(st.nextToken());
+			w = Integer.parseInt(st.nextToken());
+			h = Integer.parseInt(st.nextToken());
+
+			breeks = new int[w][h];
+			sel = new int[n];
+			ans = Integer.MAX_VALUE;
+
+			for (int j = 0; j < h; j++) {
+				st = new StringTokenizer(br.readLine());
+				for (int i = 0; i < w; i++) {
+					breeks[i][j] = Integer.parseInt(st.nextToken());
+				}
+			}
+
+			simulate(0);
+
+			sb.append("#").append(tc).append(" ").append(ans).append("\n");
+		}
+
+		bw.write(sb.toString());
+		bw.flush();
+		bw.close();
+	}
+
+	private static void simulate(int cur) {
+		if (cur == n) {
+			int[][] temp = copy(breeks);
+			for (int i = 0; i < n; i++) {
+				int wIdx = sel[i];
+				int hIdx = findTop(temp, wIdx);
+				if (hIdx == -1)
+					continue;
+				bomb(wIdx, hIdx, temp);
+				gravity(temp);
+			}
+			ans = Math.min(ans, counting(temp));
+			return;
+		}
+
+		for (int i = 0; i < w; i++) {
+			sel[cur] = i;
+			simulate(cur + 1);
+		}
+	}
+
+	private static int findTop(int[][] table, int col) {
+		for (int row = 0; row < h; row++) {
+			if (table[col][row] != 0)
+				return row;
+		}
+		return -1;
+	}
+
+	private static int counting(int[][] table) {
+		int count = 0;
+		for (int i = 0; i < w; i++) {
+			for (int j = 0; j < h; j++) {
+				if (table[i][j] != 0)
+					count++;
+			}
+		}
+		return count;
+	}
+
+	private static void gravity(int[][] table) {
+		for (int i = 0; i < w; i++) {
+			int tIdx = h - 1;
+			for (int j = h - 1; j >= 0; j--) {
+				if (table[i][j] != 0) {
+					table[i][tIdx] = table[i][j];
+					if (tIdx != j) {
+						table[i][j] = 0;
+					}
+					tIdx--;
+				}
+			}
+			for (int j = tIdx; j >= 0; j--) {
+				table[i][j] = 0;
+			}
+		}
+	}
+
+	private static void bomb(int wIdx, int hIdx, int[][] table) {
+		if (wIdx < 0 || wIdx >= w || hIdx < 0 || hIdx >= h || table[wIdx][hIdx] == 0)
+			return;
+
+		int range = table[wIdx][hIdx];
+		table[wIdx][hIdx] = 0;
+
+		for (int d = 1; d < range; d++) {
+			bomb(wIdx - d, hIdx, table);
+			bomb(wIdx + d, hIdx, table);
+			bomb(wIdx, hIdx - d, table);
+			bomb(wIdx, hIdx + d, table);
+		}
+	}
+
+	private static int[][] copy(int[][] table) {
+		int[][] result = new int[w][h];
+		for (int i = 0; i < w; i++) {
+			System.arraycopy(table[i], 0, result[i], 0, h);
+		}
+		return result;
+	}
+}
