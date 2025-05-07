@@ -1,0 +1,92 @@
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.util.StringTokenizer;
+
+/*
+ * 후보 추천하기
+ * 14504kb 120ms
+ * https://www.acmicpc.net/problem/1713
+ */
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.StringTokenizer;
+
+public class B1713 {
+	static class candidate implements Comparable<candidate> {
+		int num;
+		int recomCnt;
+		int time;
+
+		public candidate(int num, int time) {
+			this.num = num;
+			this.recomCnt = 1;
+			this.time = time;
+		}
+
+		@Override
+		public int compareTo(candidate o) {
+			if (this.recomCnt == o.recomCnt) {
+				return this.time - o.time;
+			}
+			return this.recomCnt - o.recomCnt;
+		}
+
+	}
+
+	public static void main(String[] args) throws NumberFormatException, IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+		
+		int n = Integer.parseInt(br.readLine());
+
+		int m = Integer.parseInt(br.readLine());
+
+		StringTokenizer st = new StringTokenizer(br.readLine());
+
+		List<candidate> candidates = new ArrayList<>();
+
+		for (int i = 0; i < m; i++) {
+			int student = Integer.parseInt(st.nextToken());
+			boolean exist = false;
+			
+			for(candidate c : candidates) {
+				if(c.num==student) {
+					c.recomCnt++;
+					exist = true;
+					break;
+				}
+			}
+			if(!exist) {
+				if(candidates.size()==n) {
+					Collections.sort(candidates);
+					candidates.remove(0);
+				}
+				candidates.add(new candidate(student, i));
+			}
+		}
+		Collections.sort(candidates, new Comparator<candidate>() {
+		    @Override
+		    public int compare(candidate o1, candidate o2) {
+		        return Integer.compare(o1.num, o2.num);
+		    }
+		});
+		StringBuilder sb = new StringBuilder();
+		for (candidate c : candidates) {
+		    sb.append(c.num).append(" ");
+		}
+		bw.write(sb.toString());
+		bw.flush();
+		bw.close();
+
+	}
+}
