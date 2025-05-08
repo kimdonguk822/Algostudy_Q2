@@ -15,7 +15,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.StringTokenizer;
 
-public class Main {
+public class B1713 {
 	
 	static class Student {
 		int num; // 학생 번호
