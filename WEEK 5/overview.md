@@ -1,7 +1,7 @@
 ## ✅ 선정 문제
 
 
-### 1️⃣ [1713번 - 후보 추천하기기(Silver I)](https://www.acmicpc.net/problem/1713)
+### 1️⃣ [1713번 - 후보 추천하기(Silver I)](https://www.acmicpc.net/problem/1713)
 
 ### 2️⃣ [17271번 - 리그 오브 레전설(Small)(Silver II)](https://www.acmicpc.net/problem/17271)
 
