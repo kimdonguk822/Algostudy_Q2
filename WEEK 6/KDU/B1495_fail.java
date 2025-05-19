@@ -69,13 +69,11 @@ public class B1495_fail {
 				break;
 			}
 		}
-
 		
 		if (canfinal) {
 			Collections.sort(list);
 			sb.append(list.get(list.size()-1));
 		}
-∂
 
 		bw.write(sb.toString());
 		bw.flush();
